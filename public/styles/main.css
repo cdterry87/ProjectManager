@@ -1,0 +1,32 @@
+table{width: 100%;}
+table td{padding: 2px;}
+table td a{display: block; width: 100%; padding: 5px;}
+.table > tbody > tr > td,
+.table > tbody > tr > th,
+.table > tfoot > tr > td,
+.table > tfoot > tr > th,
+.table > thead > tr > td,
+.table > thead > tr > th{border: none; padding: 4px;}
+
+input[data-required],select[data-required]{border-color: #ffa4a4 !important;}
+input[data-required]:focus,select[data-required]:focus{box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(255, 132, 132, 0.6) !important;}
+input.form-control[size]{width: auto; display: inline;}
+
+div[class^="col-md-"] .btn,div[class*="col-md-"] .btn{margin-bottom: 10px;}
+
+.clear{clear: both; height: 5px;}
+
+.center{text-align: center;}
+
+.alert li{list-style-type: none;}
+
+.align-right{text-align: right;}
+
+.text-green{color: green;}
+.text-red{color: red;}
+
+#home .panel-body{height: 250px; overflow: auto;}
+
+@media screen and (max-width: 767px){
+	form table td{display: block; width: 100%;}
+}
