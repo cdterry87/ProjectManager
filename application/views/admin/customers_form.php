@@ -4,17 +4,11 @@
 <div><?php echo form_label('Customer Name:','customer_name'); ?></div>
 <p><?php echo form_input('customer_name','','class="form-control" maxlength="50" data-required'); ?></p>
 
-<div><?php echo form_label('Address:','customer_address'); ?></div>
-<p><?php echo form_input('customer_address','','class="form-control" maxlength="100"'); ?></p>
-
 <div><?php echo form_label('City:','customer_city'); ?></div>
 <p><?php echo form_input('customer_city','','class="form-control" maxlength="30" data-required'); ?></p>
 
 <div><?php echo form_label('State:','customer_state'); ?></div>
 <p><?php echo form_input('customer_state','','class="form-control" maxlength="2" data-required'); ?></p>
-
-<div><?php echo form_label('Zip:','customer_zip'); ?></div>
-<p><?php echo form_input('customer_zip','','class="form-control" maxlength="5"'); ?></p>
 
 <div><?php echo form_label('Phone:','customer_phone_1'); ?></div>
 <p>
@@ -22,9 +16,6 @@
 	<?php echo form_input('customer_phone_2','','class="form-control" maxlength="3" size="3" data-numeric data-autotab'); ?> -
 	<?php echo form_input('customer_phone_3','','class="form-control" maxlength="4" size="4" data-numeric'); ?>
 </p>
-
-<div><?php echo form_label('Customer Information:','customer_info'); ?></div>
-<p><?php echo form_textarea('customer_info'); ?></p>
 
 <br/>
 

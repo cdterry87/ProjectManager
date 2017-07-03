@@ -47,6 +47,19 @@ class Projects extends PROJECTS_Controller {
 		$this->load->view('template', $this->data);
 	}
 	
+	public function requests(){
+		$this->data['page']='projects/projects_requests';
+		
+		//Get all quotes.
+		$this->data['projects']=$this->Project_model->get_all_requests();
+		
+		//Get customers dropdown.
+		$this->load->model('Customer_model');
+		$this->data['customers']=$this->Customer_model->get_dropdown();
+		
+		$this->load->view('template', $this->data);
+	}
+	
 	public function complete(){
 		$this->data['page']='projects/projects_complete';
 		
@@ -81,6 +94,7 @@ class Projects extends PROJECTS_Controller {
 			''			=> '',
 			'Q'			=> 'Quote',
 			'P'			=> 'Project',
+			'R'			=> 'Request',
 		);
 		
 		//Get customers dropdown.
@@ -181,7 +195,12 @@ class Projects extends PROJECTS_Controller {
 				if($this->validate()){
 					$this->Project_model->save($id);
 					$this->set_message('Project information saved successfully', 'success');
-					redirect('projects');
+					
+					if($id!=''){
+						redirect('projects/view/'.$id);
+					}else{
+						redirect('projects');
+					}
 				}
 				
 				//The validation failed so retrieve POST data and reload the page.
@@ -216,7 +235,8 @@ class Projects extends PROJECTS_Controller {
 			case "archive project":
 				$this->Project_model->archive_project($id);
 				$this->set_message('This project is now archived!', 'warning');
-				redirect('projects/view/'.$id);
+				//redirect('projects/view/'.$id);
+				redirect('projects');
 				break;
 			case "restore project":
 				$this->Project_model->restore_project($id);

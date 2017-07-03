@@ -117,8 +117,8 @@ class Employee extends CI_Controller {
 	 * When a user clicks "Remember Me", store out a cookie for them to log them in automatically.
 	 * -------------------------------------------------------------------------------- */
 	public function remember($user){
-		//Expire 100 days from now.
-		$expiration=time()+60*60*24*100;
+		//Expire 10 days from now.
+		$expiration=time()+60*60*24*10;
 		
 		//Set a cookie for user_id, username, and password.
 		$ck_employee_id=array(
@@ -150,12 +150,21 @@ class Employee extends CI_Controller {
 	public function set_sessions($user){
 		//Set new sessions based on the user information provided.
 		if(!empty($user)){
+			$employee_departments=array();
+			$departments=$this->Employee_model->get_departments($user['employee_id']);
+			if(!empty($departments)){
+				foreach($departments as $row){
+					$employee_departments[$row['department_id']]=$row['department_name'];
+				}	
+			}
+			
 			$session=array(
 				'employee_id'			=> $user['employee_id'],
 				'employee_username'		=> $user['employee_username'],
 				'employee_email'		=> $user['employee_email'],
 				'employee_name'			=> $user['employee_name'],
 				'employee_admin'		=> $user['employee_admin'],
+				'employee_departments'	=> $employee_departments,
 			);
 			
 			$this->session->set_userdata($session);

@@ -11,14 +11,6 @@
 		<td><?php echo $this->format->date($project['project_date']); ?></td>
 	</tr>
 	<tr>
-		<td><strong>Labor:</strong></td>
-		<td><?php echo $project['project_labor']; ?> days</td>
-	</tr>
-	<tr>
-		<td><strong>Quote:</strong></td>
-		<td><?php echo $project['project_quote']; ?></td>
-	</tr>
-	<tr>
 		<td colspan="2"><strong>Details:</strong></td>
 	</tr>
 	<tr>
@@ -121,25 +113,35 @@
 
 <hr/>
 
-<h3>Task Manager</h3>
+<h3>Project Notes</h3>
 <table class="table table-striped">
 	<thead>
 		<tr>
 			<td></td>
-			<td width="5%"></td>
-			<td width="5%"></td>
+			<td width="10%"></td>
 		</tr>
 		<tr>
-			<td><?php echo form_input('task','','class="form-control" maxlength="250" data-required'); ?></td>
-			<td colspan="2"><?php echo form_submit('action','Add Task','class="btn btn-block btn-primary"'); ?></td>
+			<td colspan='2'>
+				<div><?php echo form_label('Date:','task_date_mo'); ?></div>
+				<p>
+					<?php echo form_input('task_date_mo','','class="form-control" maxlength="2" size="2" data-required data-month data-autotab data-label="Date Month"'); ?> /
+					<?php echo form_input('task_date_day','','class="form-control" maxlength="2" size="2" data-required data-day data-autotab data-label="Date Day"'); ?> /
+					<?php echo form_input('task_date_yr',date('Y'),'class="form-control" maxlength="4" size="4" data-required data-year data-label="Date Year"'); ?>
+				</p>
+			</td>
 		</tr>
+		<tr>
+			<td><?php echo form_input('task','','placeholder="Enter notes here..." class="form-control" maxlength="250" data-required'); ?></td>
+			<td><?php echo form_submit('action','Add Task','class="btn btn-block btn-primary"'); ?></td>
+		</tr>
+		
 	</thead>
 	<tbody>
 		<?php
 			if(empty($tasks)){
 		?>
 		<tr>
-			<td colspan="3">Project does not currently have any tasks.</td>
+			<td colspan="3">Project does not currently have any notes.</td>
 		</tr>
 		<?php
 			}else{
@@ -148,18 +150,7 @@
 					$task_num++;
 		?>
 		<tr>
-			<td><?php echo $task_num.". ".$row['task']; ?></td>
-			<?php
-				if($row['task_status']=="C"){
-			?>
-			<td><span class="btn btn-block btn-success glyphicon glyphicon-ok"></span></td>
-			<?php
-				}else{
-			?>
-			<td><?php echo anchor('projects/complete_task/'.$row['project_id'].'/'.$row['task_id'],'<span class=""></span>','class="btn btn-block btn-danger glyphicon glyphicon-remove"'); ?></td>
-			<?php
-				}
-			?>
+			<td><?php echo $task_num.". ".$this->format->date($row['task_date'])." - ".$row['task']; ?></td>
 			<td><?php echo anchor('projects/delete_task/'.$row['project_id'].'/'.$row['task_id'],'','class="btn btn-danger glyphicon glyphicon-trash"'); ?></td>
 		</tr>
 		<?php

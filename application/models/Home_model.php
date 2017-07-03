@@ -3,6 +3,18 @@
 class Home_model extends PROJECTS_Model {
 	
 	/* --------------------------------------------------------------------------------
+	 * Get all customers.
+	 * -------------------------------------------------------------------------------- */
+	public function get_customers(){
+		$this->db->select('*');
+		$this->db->from('customers');
+		$this->db->order_by('customer_name');
+		$query=$this->db->get();
+		
+		return $query->result_array();
+	}
+	
+	/* --------------------------------------------------------------------------------
 	 * Get my (incomplete) projects.
 	 * -------------------------------------------------------------------------------- */
 	public function get_projects_incomplete(){

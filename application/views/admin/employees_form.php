@@ -18,9 +18,6 @@
 <div><?php echo form_label('Email:','employee_email'); ?></div>
 <p><?php echo form_input('employee_email','','class="form-control" maxlength="100" data-required'); ?></p>
 
-<div><?php echo form_label('Employee Information:','employee_info'); ?></div>
-<p><?php echo form_textarea('employee_info'); ?></p>
-
 <p>
 	<?php echo form_checkbox('employee_admin'); ?>
 	<?php echo form_label('Admin Priveleges','employee_admin'); ?>
@@ -34,7 +31,7 @@
 		if(!empty($departments)){
 			foreach($departments as $row){
 	?>
-	<div class="col-md-4">
+	<div class="col-sm-3">
 		<?php echo form_checkbox('department['.$row['department_id'].']',$row['department_id']); ?>
 		<?php echo form_label($row['department_name'],'department['.$row['department_id'].']'); ?>
 	</div>

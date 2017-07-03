@@ -4,9 +4,6 @@
 <div><?php echo form_label('Department Name:','department_name'); ?></div>
 <p><?php echo form_input('department_name','','class="form-control" maxlength="50" data-required'); ?></p>
 
-<div><?php echo form_label('Department Description:','department_desc'); ?></div>
-<p><?php echo form_textarea('department_desc'); ?></p>
-
 <br/>
 
 <p><?php echo form_submit('action','Save','class="btn btn-lg btn-primary btn-block"'); ?></p>

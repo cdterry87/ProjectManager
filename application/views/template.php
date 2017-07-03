@@ -49,7 +49,7 @@
 		<div id="footer">
 			<div class="container center">
                 <hr/>
-                &copy; Chase Terry 2015
+                Application Data Systems, Inc.
             </div>
 		</div>
 		
@@ -63,9 +63,6 @@
 		<!-- TinyMCE -->
 		<script src="<?php echo base_url('public/tinymce/2.1/jquery.tinymce.min.js'); ?>"></script>
 		<script src="<?php echo base_url('public/tinymce/2.1/tinymce.min.js'); ?>"></script>
-		
-		<!-- Format Currency -->
-		<script src="<?php echo base_url('public/formatcurrency/1.4.0/formatcurrency.min.js'); ?>"></script>
 		
 		<!-- Javascript -->
 		<script src="<?php echo base_url('public/scripts/main.js'); ?>"></script>

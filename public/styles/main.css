@@ -27,6 +27,10 @@ div[class^="col-md-"] .btn,div[class*="col-md-"] .btn{margin-bottom: 10px;}
 
 #home .panel-body{height: 250px; overflow: auto;}
 
+td#sidebar{width: 30%;}
+td#sidebar .panel-body{height: 900px;}
+
 @media screen and (max-width: 767px){
 	form table td{display: block; width: 100%;}
+	#home td{width: 100%; display: inline-block;}
 }

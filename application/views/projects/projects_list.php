@@ -1,6 +1,8 @@
 <p><?php echo form_input('search','','class="form-control" placeholder="Search..."'); ?></p>
 <p class="align-right" id="search_num"></p>
 
+<p><i>*<b>(R)</b> - Requests that have not been approved as official projects</i></p>
+
 <table class="table table-striped">
 	<thead>
 		<tr>
@@ -35,9 +37,14 @@
 				}
 				
 				$link='projects/view/'.$row['project_id'];
+				
+				$request='';
+				if($row['project_type']=='R' and $this->uri->segment(2)=='all'){
+					$request='<b>(R)</b> ';
+				}
 		?>
 		<tr>
-			<td><?php echo anchor($link, $row['project_name']); ?></td>
+			<td><?php echo anchor($link, $request.$row['project_name']); ?></td>
 			<td><?php echo anchor($link, $this->format->date($row['project_date'])); ?></td>
 			<td><?php echo anchor($link, $customers[$row['customer_id']]); ?></td>
 			<td><?php echo anchor($link, $projects_departments); ?></td>

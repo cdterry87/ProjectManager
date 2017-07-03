@@ -159,7 +159,12 @@ class Support extends PROJECTS_Controller {
 				if($this->validate()){
 					$this->Support_model->save($id);
 					$this->set_message('Support issue saved successfully', 'success');
-					redirect('support');
+					
+					if($id!=''){
+						redirect('support/view/'.$id);
+					}else{
+						redirect('support');
+					}
 				}
 				
 				//The validation failed so retrieve POST data and reload the page.
@@ -201,6 +206,18 @@ class Support extends PROJECTS_Controller {
 		$this->Support_model->delete_file($support_id,$file_id);
 		$this->set_message('File has been removed!', 'danger');
 		redirect('support/view/'.$support_id);
+	}
+	
+	public function analytics(){
+		$this->data['page']='support/analytics';
+		
+		$this->load->model('Analytics_model');
+		
+		//Get all open support.
+		$this->data['customers']=$this->Analytics_model->get_customers();
+		$this->data['support']=$this->Analytics_model->get_support();
+		
+		$this->load->view('template', $this->data);
 	}
 	
 }

@@ -36,7 +36,7 @@ class Customer_model extends PROJECTS_Model {
 		return $query->row_array();
 	}
 	
-		/* --------------------------------------------------------------------------------
+	/* --------------------------------------------------------------------------------
 	 * Get a record formatted for dropdowns as a key/value pair.
 	 * -------------------------------------------------------------------------------- */
 	public function get_dropdown(){

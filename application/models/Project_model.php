@@ -18,7 +18,7 @@ class Project_model extends PROJECTS_Model {
 	public function get_all(){
 		$this->db->select('*');
 		$this->db->from($this->table);
-		$this->db->where('project_type','P');
+		$this->db->where("(project_type='P' or project_type='R')");
 		$this->db->order_by('project_date desc, project_name');
 		$query=$this->db->get();
 		
@@ -32,6 +32,20 @@ class Project_model extends PROJECTS_Model {
 		$this->db->select('*');
 		$this->db->from($this->table);
 		$this->db->where('project_type','Q');
+		$this->db->where("project_status!='A'");
+		$this->db->order_by('project_date desc, project_name');
+		$query=$this->db->get();
+		
+		return $query->result_array();
+	}
+	
+	/* --------------------------------------------------------------------------------
+	 * Get all requests.
+	 * -------------------------------------------------------------------------------- */
+	public function get_all_requests(){
+		$this->db->select('*');
+		$this->db->from($this->table);
+		$this->db->where('project_type','R');
 		$this->db->order_by('project_date desc, project_name');
 		$query=$this->db->get();
 		
@@ -44,7 +58,8 @@ class Project_model extends PROJECTS_Model {
 	public function get_all_incomplete(){
 		$this->db->select('*');
 		$this->db->from($this->table);
-		$this->db->where('project_type','P');
+		//$this->db->where('project_type','P');
+		$this->db->where("(project_type='P')");
 		$this->db->where('project_status','I');
 		$this->db->order_by('project_date desc, project_name');
 		$query=$this->db->get();
@@ -330,6 +345,7 @@ class Project_model extends PROJECTS_Model {
 		$this->db->select('*');
 		$this->db->from('projects_tasks');
 		$this->db->where('project_id',$id);
+		$this->db->order_by('task_date','desc');
 		$query=$this->db->get();
 		
 		return $query->result_array();

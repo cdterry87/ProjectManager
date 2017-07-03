@@ -21,35 +21,11 @@
 				<p>
 					<?php echo form_input('project_date_mo','','class="form-control" maxlength="2" size="2" data-required data-month data-autotab data-label="Project Date Month"'); ?> /
 					<?php echo form_input('project_date_day','','class="form-control" maxlength="2" size="2" data-required data-day data-autotab data-label="Project Date Day"'); ?> /
-					<?php echo form_input('project_date_yr','','class="form-control" maxlength="4" size="4" data-required data-year data-label="Project Date Year"'); ?>
-				</p>
-			</td>
-			<td>
-				<div><?php echo form_label('Project Due Date:','project_due_date_mo'); ?></div>
-				<p>
-					<?php echo form_input('project_due_date_mo','','class="form-control" maxlength="2" size="2" data-month data-autotab'); ?> /
-					<?php echo form_input('project_due_date_day','','class="form-control" maxlength="2" size="2" data-day data-autotab'); ?> /
-					<?php echo form_input('project_due_date_yr','','class="form-control" maxlength="4" size="4" data-year'); ?>
+					<?php echo form_input('project_date_yr',date('Y'),'class="form-control" maxlength="4" size="4" data-required data-year data-label="Project Date Year"'); ?>
 				</p>
 			</td>
 		</tr>
 		<tr>
-			<td>
-				<div><?php echo form_label('Project Approved Date:','project_approved_date_mo'); ?></div>
-				<p>
-					<?php echo form_input('project_approved_date_mo','','class="form-control" maxlength="2" size="2" data-month data-autotab'); ?> /
-					<?php echo form_input('project_approved_date_day','','class="form-control" maxlength="2" size="2" data-day data-autotab'); ?> /
-					<?php echo form_input('project_approved_date_yr','','class="form-control" maxlength="4" size="4" data-year'); ?>
-				</p>
-			</td>
-			<td>
-				<div><?php echo form_label('Project Start Date:','project_start_date_mo'); ?></div>
-				<p>
-					<?php echo form_input('project_start_date_mo','','class="form-control" maxlength="2" size="2" data-month data-autotab'); ?> /
-					<?php echo form_input('project_start_date_day','','class="form-control" maxlength="2" size="2" data-day data-autotab'); ?> /
-					<?php echo form_input('project_start_date_yr','','class="form-control" maxlength="4" size="4" data-year'); ?>
-				</p>
-			</td>
 			<td>
 				<div><?php echo form_label('Project Completed Date:','project_completed_date_mo'); ?></div>
 				<p>
@@ -62,15 +38,6 @@
 	</tbody>
 </table>
 
-<div><?php echo form_label('Project Labor (in days):','project_labor'); ?></div>
-<p><?php echo form_input('project_labor','','class="form-control" maxlength="2" data-numeric'); ?></p>
-
-<div><?php echo form_label('Project Quote:','project_quote'); ?></div>
-<p><?php echo form_input('project_quote','','class="form-control" maxlength="15"'); ?></p>
-
-<div><?php echo form_label('Project Tag(s):','project_tags'); ?></div>
-<p><?php echo form_input('project_tags','','class="form-control" maxlength="100"'); ?></p>
-
 <hr/>
 
 <p>
@@ -78,9 +45,15 @@
 	<?php
 		if(!empty($departments)){
 			foreach($departments as $row){
+				$checked="";
+				if(isset($_SESSION['employee_departments'][$row['department_id']])){
+					if($_SESSION['employee_departments'][$row['department_id']]==$row['department_name']){
+						$checked="CHECKED";
+					}
+				}
 	?>
-	<div class="col-md-4">
-		<?php echo form_checkbox('department['.$row['department_id'].']',$row['department_id']); ?>
+	<div class="col-sm-3">
+		<?php echo form_checkbox('department['.$row['department_id'].']',$row['department_id'], $checked); ?>
 		<?php echo form_label($row['department_name'],'department['.$row['department_id'].']'); ?>
 	</div>
 	<?php
@@ -100,11 +73,14 @@
 <p>
 	<?php echo form_label('Assigned Employee(s):','');  ?>
 	<?php
+	
 		if(!empty($employees)){
 			foreach($employees as $row){
+				$checked="";
+				if($_SESSION['employee_id']==$row['employee_id']) $checked="CHECKED";
 	?>
-	<div class="col-md-4">
-		<?php echo form_checkbox('employee['.$row['employee_id'].']',$row['employee_id']); ?>
+	<div class="col-sm-3">
+		<?php echo form_checkbox('employee['.$row['employee_id'].']',$row['employee_id'], $checked); ?>
 		<?php echo form_label($row['employee_name'],'employee['.$row['employee_id'].']'); ?>
 	</div>
 	<?php

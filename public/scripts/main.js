@@ -199,9 +199,9 @@ $(function(){
 			$(this).val(num);
 			
 			if ($.isNumeric($(this).val())==false) {
-			   alert(numeric_error);
-			   $(this).val('');
+            $(this).val('');
 			   $(this).focus();
+			   alert(numeric_error);
 			}
 		 }
     });
@@ -212,9 +212,9 @@ $(function(){
     $("[data-numeric]").keyup(function(){
         if ($(this).val()!='') {
             if ($.isNumeric($(this).val())==false) {
-			   $(this).val('');
-			   alert(numeric_error);
-			   $(this).focus();
+               $(this).val('');
+               $(this).focus();
+               alert(numeric_error);
             }
 		 }
    });
@@ -226,14 +226,16 @@ $(function(){
     $("[data-month]").keyup(function(e){
         if(this.value.length=='2'){
             if ($.isNumeric($(this).val())==false) {
-                alert(month_error);
-                $(this).val('');
-                $(this).focus();
+               if(e.which!='67'){
+                  $(this).val('');
+                  $(this).focus();
+                  alert(month_error);
+               }
             }else{
                 if ($(this).val()>12 || $(this).val()<1){
-                    alert(month_error);
-                    $(this).val('');
-                    $(this).focus();
+                  $(this).val('');
+                  $(this).focus();
+                  alert(month_error);
                 }
             }
         }
@@ -246,14 +248,16 @@ $(function(){
     $("[data-day]").keyup(function(e){
         if(this.value.length=='2'){
             if ($.isNumeric($(this).val())==false) {
-                alert(day_error);
-                $(this).val('');
-                $(this).focus();
+               if(e.which!='67'){
+                  $(this).val('');
+                  $(this).focus();
+                  alert(day_error);
+               }
             }else{
                 if ($(this).val()>31 || $(this).val()<1){
-                    alert(day_error);
-                    $(this).val('');
-                    $(this).focus();
+                  $(this).val('');
+                  $(this).focus();
+                  alert(day_error);
                 }
             }
         }
@@ -294,8 +298,9 @@ $(function(){
     $("[data-hour], [data-hours]").keyup(function(e){
         if($(this).val()!=""){
             if ($(this).val()>23 || $(this).val()<0) {
-                alert(hour_error);
-                $(this).focus();
+               $(this).val('');
+               $(this).focus();
+               alert(hour_error);
             }
         }   
     });
@@ -307,8 +312,9 @@ $(function(){
     $("[data-minute], [data-minutes]").keyup(function(e){
         if($(this).val()!=""){
             if ($(this).val()>59 || $(this).val()<0) {
-                alert(minute_error);
-                $(this).focus();
+               $(this).val('');
+               $(this).focus();
+               alert(minute_error);
             }
         }       
     });

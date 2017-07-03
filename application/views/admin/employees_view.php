@@ -18,15 +18,7 @@
 		<td><strong>Email:</strong></td>
 		<td><?php echo $employee['employee_email']; ?></td>
 	</tr>
-	<tr>
-		<td colspan="2"><strong>Description:</strong></td>
-	</tr>
-	<tr>
-		<td colspan="2"><?php echo $employee['employee_info']; ?></td>
-	</tr>
 </table>
-
-<hr/>
 
 <div class="panel panel-primary">
 	<div class="panel-heading">

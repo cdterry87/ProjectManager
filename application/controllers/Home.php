@@ -12,6 +12,9 @@ class Home extends PROJECTS_Controller {
 		$this->data['page']='home';
 		
 		//Get user's incomplete/complete projects.
+		$this->data['customers']=$this->Home_model->get_customers();
+		
+		//Get user's incomplete/complete projects.
 		$this->data['projects_incomplete']=$this->Home_model->get_projects_incomplete();
 		//$this->data['projects_complete']=$this->Home_model->get_projects_complete();
 		

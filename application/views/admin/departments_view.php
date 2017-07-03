@@ -2,17 +2,6 @@
 
 <h1><?php echo $department['department_name']; ?></h1>
 
-<table class="table table-condensed">
-	<tr>
-		<td><strong>Description:</strong></td>
-	</tr>
-	<tr>
-		<td><?php echo $department['department_desc']; ?></td>
-	</tr>
-</table>
-
-<hr/>
-
 <div class="panel panel-primary">
 	<div class="panel-heading">
 		<h2 class="panel-title">Employees</h2>

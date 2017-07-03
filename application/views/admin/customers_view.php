@@ -2,32 +2,39 @@
 
 <h1><?php echo $customer['customer_name']; ?></h1>
 
-<table class="table table-condensed">
-	<tr>
-		<td width="10%"><strong>Address:</strong></td>
-		<td><?php echo $customer['customer_address']; ?></td>
-	</tr>
-	<tr>
-		<td><strong>City/State/Zip:</strong></td>
-		<td><?php echo $customer['customer_city'].", ".$customer['customer_state']." ".$customer['customer_zip']; ?></td>
-	</tr>
-	<tr>
-		<td><strong>Phone:</strong></td>
-		<td><?php echo $this->format->phone($customer['customer_phone']); ?></td>
-	</tr>
-	<tr>
-		<td colspan="2"><strong>Details:</strong></td>
-	</tr>
-	<tr>
-		<td colspan="2"><?php echo $customer['customer_info']; ?></td>
-	</tr>
-</table>
-
-<hr/>
-
-<div class="panel panel-primary">
+<div class="panel panel-danger">
 	<div class="panel-heading">
-		<h2 class="panel-title">Quotes</h2>
+		<h2 class="panel-title"><?php echo anchor('projects/incomplete','Projects - Incomplete'); ?></h2>
+	</div>
+	<div class="panel-body">
+		<table class="table table-striped">
+			<tbody>
+				<?php
+					if(empty($projects_incomplete)){
+				?>
+				<tr>
+					<td>There are currently no incomplete projects for this customer.</td>
+				</tr>
+				<?php
+					}else{
+						foreach($projects_incomplete as $row){
+							$link='projects/view/'.$row['project_id'];
+				?>
+				<tr>
+					<td><?php echo anchor($link, $row['project_name']); ?></td>
+				</tr>
+				<?php
+						}
+					}
+				?>
+			</tbody>
+		</table>
+	</div>
+</div>
+
+<div class="panel panel-success">
+	<div class="panel-heading">
+		<h2 class="panel-title"><?php echo anchor('projects/quotes','Projects - Quotes'); ?></h2>
 	</div>
 	<div class="panel-body">
 		<table class="table table-striped">
@@ -54,48 +61,13 @@
 		</table>
 	</div>
 </div>
-
-<div class="panel panel-primary">
+		
+<div class="panel panel-info">
 	<div class="panel-heading">
-		<h2 class="panel-title">Projects</h2>
+		<h2 class="panel-title"><?php echo anchor('projects/complete','Projects - Complete'); ?></h2>
 	</div>
 	<div class="panel-body">
 		<table class="table table-striped">
-			<thead>
-				<tr>
-					<th><?php echo anchor('projects/incomplete','Incomplete'); ?></th>
-				</tr>
-			</thead>
-			<tbody>
-				<?php
-					if(empty($projects_incomplete)){
-				?>
-				<tr>
-					<td>There are currently no incomplete projects for this customer.</td>
-				</tr>
-				<?php
-					}else{
-						foreach($projects_incomplete as $row){
-							$link='projects/form/'.$row['project_id'];
-				?>
-				<tr>
-					<td><?php echo anchor($link, $row['project_name']); ?></td>
-				</tr>
-				<?php
-						}
-					}
-				?>
-			</tbody>
-		</table>
-		
-		<hr/>
-		
-		<table class="table table-striped">
-			<thead>
-				<tr>
-					<th><?php echo anchor('projects/complete','Complete'); ?></th>
-				</tr>
-			</thead>
 			<tbody>
 				<?php
 					if(empty($projects_complete)){
@@ -117,15 +89,14 @@
 				?>
 			</tbody>
 		</table>
-		
-		<hr/>
-		
+	</div>
+</div>
+<div class="panel panel-warning">
+	<div class="panel-heading">
+		<h2 class="panel-title"><?php echo anchor('projects/archive','Projects - Archived'); ?></h2>
+	</div>
+	<div class="panel-body">	
 		<table class="table table-striped">
-			<thead>
-				<tr>
-					<th><?php echo anchor('projects/archive','Archived'); ?></th>
-				</tr>
-			</thead>
 			<tbody>
 				<?php
 					if(empty($projects_archived)){
@@ -150,17 +121,12 @@
 	</div>
 </div>
 
-<div class="panel panel-primary">
+<div class="panel panel-danger">
 	<div class="panel-heading">
-		<h2 class="panel-title">Support</h2>
+		<h2 class="panel-title"><?php echo anchor('support','Support - Open'); ?></h2>
 	</div>
 	<div class="panel-body">
 		<table class="table table-striped">
-			<thead>
-				<tr>
-					<th><?php echo anchor('support/open','Open'); ?></th>
-				</tr>
-			</thead>
 			<tbody>
 				<?php
 					if(empty($support_open)){
@@ -182,15 +148,15 @@
 				?>
 			</tbody>
 		</table>
-		
-		<hr/>
-		
+	</div>
+</div>
+
+<div class="panel panel-info">
+	<div class="panel-heading">
+		<h2 class="panel-title"><?php echo anchor('support/closed','Support - Closed'); ?></h2>
+	</div>
+	<div class="panel-body">
 		<table class="table table-striped">
-			<thead>
-				<tr>
-					<th><?php echo anchor('support/closed','Closed'); ?></th>
-				</tr>
-			</thead>
 			<tbody>
 				<?php
 					if(empty($support_closed)){
@@ -212,15 +178,15 @@
 				?>
 			</tbody>
 		</table>
-		
-		<hr/>
-		
+	</div>
+</div>
+
+<div class="panel panel-warning">
+	<div class="panel-heading">
+		<h2 class="panel-title"><?php echo anchor('support/archive','Support - Archived'); ?></h2>
+	</div>
+	<div class="panel-body">
 		<table class="table table-striped">
-			<thead>
-				<tr>
-					<th><?php echo anchor('support/archive','Archived'); ?></th>
-				</tr>
-			</thead>
 			<tbody>
 				<?php
 					if(empty($support_archived)){
