@@ -85,6 +85,7 @@ class Support_model extends PROJECTS_Model {
 		//Unset fields that should not be updated.
 		unset($data[$this->table_id]);
 		
+		//Setting default values for fields not on the screen.
 		$data['support_closed_date']='';
 		$data['support_archived_date']='';
 		

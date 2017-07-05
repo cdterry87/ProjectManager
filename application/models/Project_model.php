@@ -116,6 +116,15 @@ class Project_model extends PROJECTS_Model {
 		//Unset fields that should not be updated.
 		unset($data[$this->table_id]);
 		
+		//Setting default values for fields not on the screen.
+		$data['project_due_date']='';
+		$data['project_approved_date']='';
+		$data['project_start_date']='';
+		$data['project_archived_date']='';
+		$data['project_labor']='0';
+		$data['project_quote']='0';
+		$data['project_tags']='';
+		
 		if($id==''){
 			//Set status to "I" (Incomplete) by default.
 			$data['project_status']="I";
