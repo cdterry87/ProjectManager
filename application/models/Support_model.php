@@ -82,6 +82,12 @@ class Support_model extends PROJECTS_Model {
 		//Prepare the data from the screen.
 		$data=$this->prepare($this->table);
 		
+		//Unset fields that should not be updated.
+		unset($data[$this->table_id]);
+		
+		$data['support_closed_date']='';
+		$data['support_archived_date']='';
+		
 		if($id==''){
 			//Set status to "I" (Incomplete) by default.
 			$data['support_status']="O";
@@ -92,9 +98,6 @@ class Support_model extends PROJECTS_Model {
 			//Return the ID of the record that was inserted.
 			$id=$this->db->insert_id();
 		}else{
-			//Unset fields that should not be updated.
-			unset($data[$this->table_id]);
-			
 			//Update the record in the database.
 			$this->db->where($this->table_id, $id);
 			$this->db->update($this->table, $data);
